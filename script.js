@@ -116,8 +116,7 @@ function updateItem(id, patch) {
   const it = state.items.find(i => i.id === id);
   if (!it) return;
   Object.assign(it, patch);
-  calculate();
-  renderItems(); // to refresh pills
+  calculate(); // ✅ recalcula sem recriar os inputs
 }
 
 function computeItem(it) {
