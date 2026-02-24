@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calculadora de Orçamento - Fachada / Adesivo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div>
+        <h1>Calculadora de Orçamento</h1>
+        <p class="sub">Fachada em lona / adesivos — calcula m², produção, instalação e preço final.</p>
+      </div>
+      <button id="btnDemo" class="btn btn-secondary" type="button">Carregar exemplo</button>
+    </header>
+
+    <main class="grid">
+      <section class="card">
+        <h2>Configurações</h2>
+
+        <div class="row">
+          <label for="installationCost">Instalação (fixo)</label>
+          <div class="input-wrap">
+            <span class="prefix">R$</span>
+            <input id="installationCost" type="number" step="0.01" min="0" value="150" />
+          </div>
+        </div>
+
+        <div class="row">
+          <label for="multiplier">Multiplicador (ex: 3)</label>
+          <input id="multiplier" type="number" step="0.1" min="1" value="3" />
+          <p class="hint">Preço final = (produção + extras + instalação) × multiplicador</p>
+        </div>
+
+        <div class="row">
+          <label for="extras">Extras (metalon, solda, pintura…)</label>
+          <div class="input-wrap">
+            <span class="prefix">R$</span>
+            <input id="extras" type="number" step="0.01" min="0" value="0" />
+          </div>
+          <p class="hint">Use para itens que não são por m² (ex: barras de metalon).</p>
+        </div>
+
+        <div class="row split">
+          <button id="btnCalculate" class="btn btn-primary" type="button">Calcular</button>
+          <button id="btnClear" class="btn btn-secondary" type="button">Limpar</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="title-row">
+          <h2>Itens (por m²)</h2>
+          <button id="btnAddItem" class="btn btn-secondary" type="button">+ Adicionar item</button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Descrição</th>
+                <th>Largura (cm)</th>
+                <th>Altura (cm)</th>
+                <th>R$ / m²</th>
+                <th>Área (m²)</th>
+                <th>Custo (R$)</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="itemsBody"></tbody>
+          </table>
+        </div>
+
+        <p class="hint">
+          Dica: para porta com duas folhas, crie dois itens (esquerda/direita).
+        </p>
+      </section>
+
+      <section class="card wide">
+        <h2>Resultado</h2>
+
+        <div class="results">
+          <div class="kpi">
+            <div class="label">Área total</div>
+            <div class="value" id="kpiArea">0,00 m²</div>
+          </div>
+
+          <div class="kpi">
+            <div class="label">Produção (itens)</div>
+            <div class="value" id="kpiProduction">R$ 0,00</div>
+          </div>
+
+          <div class="kpi">
+            <div class="label">Extras</div>
+            <div class="value" id="kpiExtras">R$ 0,00</div>
+          </div>
+
+          <div class="kpi">
+            <div class="label">Instalação</div>
+            <div class="value" id="kpiInstall">R$ 0,00</div>
+          </div>
+
+          <div class="kpi highlight">
+            <div class="label">Total base</div>
+            <div class="value" id="kpiBase">R$ 0,00</div>
+            <div class="small" id="kpiBaseNote">produção + extras + instalação</div>
+          </div>
+
+          <div class="kpi highlight">
+            <div class="label">Preço final</div>
+            <div class="value" id="kpiFinal">R$ 0,00</div>
+            <div class="small" id="kpiFinalNote">base × multiplicador</div>
+          </div>
+        </div>
+
+        <details class="details">
+          <summary>Ver detalhamento</summary>
+          <pre id="breakdown" class="breakdown">Nenhum cálculo ainda.</pre>
+        </details>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Feito para GitHub Pages · HTML/CSS/JS</span>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
